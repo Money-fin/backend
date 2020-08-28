@@ -1,5 +1,5 @@
 requests
-kafka
+kafka-python
 bs4
 numpy
 pandas

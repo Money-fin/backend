@@ -1,4 +1,6 @@
 import requests
+import sys
+sys.path.append("/home/jylee/backend")
 import urllib
 import os
 from bs4 import BeautifulSoup

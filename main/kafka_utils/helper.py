@@ -4,11 +4,11 @@ from json import dumps, loads
 class KafkaHelper(object):
     @classmethod
     def _producer(cls):
-        return KafkaProducer(bootstrap_servers=['localhost:9092'], value_serializer=lambda x: dumps(x).encode('utf-8'))
+        return KafkaProducer(bootstrap_servers=['localhost:9092'], value_serializer=lambda x: dumps(x).encode('utf-8-sig'))
 
     @classmethod
     def _consumer(cls, topic):
-        return KafkaConsumer(topic, bootstrap_servers=['localhost:9092'], value_deserializer=lambda x: loads(x.decode('utf8')))
+        return KafkaConsumer(topic, bootstrap_servers=['localhost:9092'], value_deserializer=lambda x: loads(x.decode('utf-8-sig')))
 
     @classmethod
     def pub_ninput(cls, result):

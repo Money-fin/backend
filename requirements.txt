@@ -1,5 +1,5 @@
 requests
-urllib
+kafka-python
 bs4
 numpy
 pandas

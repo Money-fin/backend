@@ -26,7 +26,7 @@ def finance_crawl(company_sector, company_code, company_name):
   finance_date = annual_date + quarter_date
 
   finance = pd.DataFrame(data=finance_data[0:,0:], index=finance_index, columns=finance_date)
-  finance.to_csv(f"{os.path.join(company_sector,company_name)}.csv", sep='\t', encoding='utf-8')
+  finance.to_csv(f"{os.path.join(company_sector,company_name)}.csv", sep='\t', encoding='utf-8-sig')
 
 def craw_sector(type_sector, sector_id, sector_name):
   url = f'https://finance.naver.com/sise/sise_group_detail.nhn?type={type_sector}&no={sector_id}'

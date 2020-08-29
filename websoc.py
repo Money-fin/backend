@@ -1,4 +1,5 @@
 import os
+import json
 import asyncio
 import websockets
 from telegram import send_telegram
@@ -53,7 +54,7 @@ class Server:
         chat_data = new_crawl(data["link"])
         chat_data["result"] = data["result"]
         send_telegram(data)
-        await websocket.send(f"{chat_data}")
+        await websocket.send(json.dump(chat_data))
 
 if __name__ == '__main__':
   ws = Server()

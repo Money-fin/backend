@@ -4,7 +4,7 @@ import websockets
 from telegram import send_telegram
 from receive_data import receive_result
 import time
-from main.crawler.recent_news import new_crawl
+from recent_news import new_crawl
 class Server:
 
     def get_port(self):

@@ -6,7 +6,7 @@ import os
 from bs4 import BeautifulSoup
 import numpy as np
 import pandas as pd
-from kafka_utils.helper import KafkaHelper
+from helper import KafkaHelper
 
 def new_crawl(link, kafka=False):
   url = link

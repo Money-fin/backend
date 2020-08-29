@@ -19,6 +19,8 @@ def new_crawl(link):
   item_info = requests.get(url).text
   soup = BeautifulSoup(item_info, 'html.parser')
   title = soup.select('div.content03 header.title-article01 h1')[0].get_text()
+  title = title.replace('"','')
+  title = title.replace("'","")
   time = soup.select('div.content03 header.title-article01 p')[0].get_text()[4:]
   img_url = f"https:{soup.select('div.img-con span img')[0]['src']}"
   raw_content = soup.select('div.story-news.article')
@@ -26,6 +28,7 @@ def new_crawl(link):
   content_p = [item.select("p") for item in raw_content]
   content_text = [item.get_text().strip() for item in content_p[0]]
   content = "\n".join(content_text[1:])
+  content = content.replace('"','')
   content = content.replace("'","")
   data_dict = {
     "title": title,
@@ -55,7 +58,7 @@ class Server:
         chat_data = new_crawl(data["link"])
         chat_data["result"] = data["result"]
         send_telegram(data)
-        await websocket.send(f"{chat_data}")
+        await websocket.send(f"{chat_data}".replace("'",'"'))
 
 if __name__ == '__main__':
   ws = Server()

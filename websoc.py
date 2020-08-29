@@ -4,6 +4,7 @@ import websockets
 from telegram import send_telegram
 from receive_data import receive_result
 import time
+from main.crawler.recent_news import new_crawl
 class Server:
 
     def get_port(self):
@@ -17,12 +18,12 @@ class Server:
         return websockets.serve(self.handler, self.get_host(), self.get_port())
 
     async def handler(self, websocket, path):
-        print('server received :', "123")
-        while True:
-            time.sleep(10)
-            data = receive_result()
-            send_telegram(data)
-            await websocket.send(data)
+        print("connected!")
+        data = receive_result()
+        chat_data = new_crawl(data["link"])
+        chat_data["result"] = data["result"]
+        send_telegram(data)
+        await websocket.send(f"{chat_data}")
 
 if __name__ == '__main__':
   ws = Server()

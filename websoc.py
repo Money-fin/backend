@@ -49,6 +49,7 @@ class Server:
     async def handler(self, websocket, path):
         print("connected!")
         data = receive_result()
+        print(data)
         chat_data = new_crawl(data["link"])
         chat_data["result"] = data["result"]
         send_telegram(data)

@@ -26,6 +26,7 @@ def new_crawl(link):
   content_p = [item.select("p") for item in raw_content]
   content_text = [item.get_text().strip() for item in content_p[0]]
   content = "\n".join(content_text[1:])
+  content = content.replace("'","")
   data_dict = {
     "title": title,
     "content": content,

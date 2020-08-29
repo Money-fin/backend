@@ -8,7 +8,7 @@ from recent_news import new_crawl
 class Server:
 
     def get_port(self):
-        return os.getenv('WS_PORT', '9385')
+        return os.getenv('WS_PORT', '9998')
 
     def get_host(self):
         return os.getenv('WS_HOST', '0.0.0.0')

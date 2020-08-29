@@ -54,7 +54,7 @@ class Server:
         chat_data = new_crawl(data["link"])
         chat_data["result"] = data["result"]
         send_telegram(data)
-        await websocket.send(dumps(chat_data).encode('utf-8'))
+        await websocket.send(chat_data)
 
 if __name__ == '__main__':
   ws = Server()

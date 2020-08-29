@@ -4,7 +4,36 @@ import websockets
 from telegram import send_telegram
 from receive_data import receive_result
 import time
-from recent_news import new_crawl
+import requests
+import urllib
+import os
+from bs4 import BeautifulSoup
+import numpy as np
+import pandas as pd
+from helper import KafkaHelper
+
+def new_crawl(link):
+  url = link
+
+  item_info = requests.get(url).text
+  soup = BeautifulSoup(item_info, 'html.parser')
+  title = soup.select('div.content03 header.title-article01 h1')[0].get_text()
+  time = soup.select('div.content03 header.title-article01 p')[0].get_text()
+  img_url = f"https:{soup.select('div.img-con span img')[0]['src']}"
+  raw_content = soup.select('div.story-news.article')
+  # print(raw_content)
+  content_p = [item.select("p") for item in raw_content]
+  content_text = [item.get_text().strip() for item in content_p[0]]
+  content = "\n".join(content_text[1:])
+  data_dict = {
+    "title": title,
+    "content": content,
+    "link": link
+  }
+  data_dict["time"] = time
+  data_dict["img_url"] = img_url
+  return data_dict
+
 class Server:
 
     def get_port(self):

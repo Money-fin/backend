@@ -20,7 +20,7 @@ def new_crawl(link, kafka=False):
   # print(raw_content)
   content_p = [item.select("p") for item in raw_content]
   content_text = [item.get_text().strip() for item in content_p[0]]
-  content = "\n".join(th_data2[1:])
+  content = "\n".join(content_text[1:])
   data_dict = {
     "title": title,
     "content": content,

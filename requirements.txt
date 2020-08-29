@@ -3,3 +3,4 @@ kafka-python
 bs4
 numpy
 pandas
+simplejson

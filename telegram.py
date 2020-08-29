@@ -14,4 +14,4 @@ def send_telegram(data):
     print(chat_id)
 
     #메세지 보내기
-    requests.get(send_url, params={"chat_id" : chat_id, "text" : f"title:{data["title"]}\nlink:{data["link"]}\n신호:{data["result"]}"})
+    requests.get(send_url, params={"chat_id" : chat_id, "text" : f'title:{data["title"]}\nlink:{data["link"]}\n신호:{data["result"]}'})

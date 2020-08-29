@@ -14,7 +14,7 @@ def new_crawl(link, kafka=False):
   item_info = requests.get(url).text
   soup = BeautifulSoup(item_info, 'html.parser')
   title = soup.select('div.content03 header.title-article01 h1')[0].get_text()
-  time = soup.select('div.content03 header.title-article01 p')[0].get_text()
+  time = soup.select('div.content03 header.title-article01 p')[0].get_text()[4:]
   img_url = f"https:{soup.select('div.img-con span img')[0]['src']}"
   raw_content = soup.select('div.story-news.article')
   # print(raw_content)

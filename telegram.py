@@ -9,6 +9,7 @@ def send_telegram(data):
     send_url = 'https://api.telegram.org/bot{}/sendMessage'.format(token)
     response = json.loads(requests.get(get_url).text)
     chat_id = response["result"][-1]["message"]["from"]["id"]
-
+    print(chat_id)
     #메세지 보내기
     requests.get(send_url, params={"chat_id" : chat_id, "text" : f'title:{data["title"]}\nlink:{data["link"]}\n신호:{data["result"]}'})
+print(send_telegram({'title': 'dadasdsd', 'link': 'https://www.yna.co.kr/view/AKR20200827130600004?section=search', 'result': 0.11}))
